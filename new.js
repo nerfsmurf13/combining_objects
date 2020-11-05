@@ -27,40 +27,56 @@ console.log("LOADED")
 //     console.log(itemData)
 // }
 
+// function weaponPrice(ammoCost, shots, deaths, weaponCost) {
+//     ammoCost * shots +
+//         deaths * weaponCost
+// }
 
 function returnedData(x) {
     let catIndex = 0
     let foundCat = false
     let searchCat = false
+    let foundSpecific = ""
+    let message = ''
+    let arr1 = {}
+
     for (const subcat of Object.values(itemData)) {
         searchCat = Object.entries(itemData)[catIndex][0]
         let count = 0
         if (x == searchCat) {
             foundCat = x
-            console.log('FOUND!', foundCat)
-            console.log('Category Index', catIndex)
-            return foundCat //ENDPOINT 1
+            // console.log('FOUND!', foundCat)
+            // console.log('Category Index', catIndex)
+            return dataObject[foundCat].name //ENDPOINT 1
         } else {
             for (const subWeapon of Object.keys(subcat)) {
                 count++
                 if (x == subWeapon) {
                     foundCat = searchCat
-                    console.log('Target found!')
-                    console.log("Found Within", foundCat)
-                    console.log(subcat)
-                    arr1 = Object.keys(subcat)
-                    console.log("arr1", arr1)
-                    console.log(arr1.indexOf(x))
+                    foundSpecific = x
+                    // console.log('Target found!')
+                    // console.log("Found Within", foundCat)
+                    // console.log(subcat[x].properties)
+                    arr1 = subcat[x].properties
+                    // arr1 = Object.keys(subcat)
+                    // console.log("arr1", arr1)
+                    // console.log(arr1.indexOf(x))
+                    // console.log("Found", foundSpecific)
                     // lookupTable(x, foundCat)
                 }
             }
         }
         catIndex++
     }
+    // Cannot find anything
+    if (!foundCat) {
+        // console.log("not found")
+        message = 'Cannot find ' + x
+        return message
+    }
     // if (itemData.hasOwnProperty(x)) {
     //     console.log('FOUND!')
     // } else {
-
     //     for (const subset of Object.values(itemData)) {
     //         count++
     //         if (subset.hasOwnProperty(x)) {
@@ -78,28 +94,50 @@ function returnedData(x) {
     //     // return itemData.hasOwnProperty(x)
     // }
     // console.log(itemData)
-    console.log(itemData)
+    // console.log(itemData)
+    return lookupTable(x, foundSpecific, arr1)
 }
 
 
-function lookupTable(x, specific) {
+function lookupTable(x, specific, arr) {
     let count = 0
+    let arr2 = {}
+    let c = {}
+
     if (!specific) {
         if (dataObject.hasOwnProperty(x)) {
-            console.log('FOUND!')
-            console.log(dataObject[x].name)
+            // console.log('FOUND!')
+            // console.log(dataObject[x].name)
         } else {
             for (const subset of Object.values(dataObject)) {
                 count++
                 if (subset.hasOwnProperty(x)) {
-                    console.log('Target found!')
-                    console.log('Array Index:', count)
-                    console.log(dataObject[subset].name)
+                    // console.log('Target found!')
+                    // console.log('Array Index:', count)
+                    // console.log(dataObject[subset].name)
                 }
                 // console.log('Not Found...')
             }
             // return itemData.hasOwnProperty(x)
         }
+    } else {
+        for (const subCat of Object.values(dataObject)) {
+            // console.log(subCat)
+            for (const subWeapon of Object.keys(subCat)) {
+                if (x == subWeapon) {
+                    // console.log("Found", subWeapon)
+                    // console.log(subCat[subWeapon])
+                    arr2 = subCat[subWeapon]
+                    c = {
+                        ...arr,
+                        ...arr2
+                    }
+                    // console.log(c)
+                    return c
+                }
+            }
+        }
+        return "Not Found"
     }
 
 }
@@ -107,20 +145,23 @@ const dataObject = {
     'weapon_sniper': {
         name: "Snipers",
         'iw8_sn_alpha50': {
+            desc: "Enter description here",
             name: "AX-50",
-            cost: 3999,
+            weaponCost: 3999,
             ammoCost: 20,
-            magSize: 5
+            magSize: 5,
         },
         'iw8_sn_hdromeo': {
+            desc: "Enter description here",
             name: "HDR",
-            cost: 1000,
+            weaponCost: 1000,
             ammoCost: 10,
             magSize: 5
         },
         'iw8_sn_xmike109': {
+            desc: "Enter description here",
             name: "Ray-O-Tek",
-            cost: 10000,
+            weaponCost: 10000,
             ammoCost: 10,
             magSize: 5
         },
@@ -128,8 +169,9 @@ const dataObject = {
     'weapon_lmg': {
         name: "Light Machine Guns",
         'iw8_lm_mgolf36': {
+            desc: "Enter description here",
             name: "MG36",
-            cost: 3000,
+            weaponCost: 3000,
             ammoCost: .30,
             magsize: 75
         }
