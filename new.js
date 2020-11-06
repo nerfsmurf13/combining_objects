@@ -1,217 +1,200 @@
 console.log('LOADED');
 
-// function returnedData(x) {
-//     let count = 0
-//     if (itemData.hasOwnProperty(x)) {
-//         console.log('FOUND!')
-//     } else {
+let weaponData = {};
 
-//         for (const subset of Object.values(itemData)) {
-//             count++
-//             if (subset.hasOwnProperty(x)) {
-//                 console.log('Target found!')
-//                 // console.log('Parent Index:', subset)
-//                 arr1 = Object.keys(itemData)
-//                 console.log("arr1", arr1)
-//                 console.log("x", x)
-//                 console.log("subset", Object.values(subset))
-//                 console.log(arr1.indexOf(x))
-//                 console.log('Subset Index:', count)
-//             }
-//             // console.log('Not Found...')
-//         }
-//         // return itemData.hasOwnProperty(x)
-//     }
-//     console.log(itemData)
-// }
-
-// function returnedData(x) {
-//     let catIndex = 0
-//     let foundCat = false
-//     let searchCat = false
-//     for (const subcat of Object.values(itemData)) {
-//         searchCat = Object.entries(itemData)[catIndex][0]
-//         let count = 0
-//         if (x == searchCat) {
-//             foundCat = x
-//             console.log('FOUND!', foundCat)
-//             console.log('Category Index', catIndex)
-//             return foundCat //ENDPOINT 1
-//         } else {
-//             for (const subWeapon of Object.keys(subcat)) {
-//                 count++
-//                 if (x == subWeapon) {
-//                     foundCat = searchCat
-//                     console.log('Target found!')
-//                     console.log("Found Within", foundCat)
-//                     console.log(subcat)
-//                     arr1 = Object.keys(subcat)
-//                     console.log("arr1", arr1)
-//                     console.log(arr1.indexOf(x))
-//                     // lookupTable(x, foundCat)
-//                 }
-//             }
-//         }
-//         catIndex++
-//     }
-//     // if (itemData.hasOwnProperty(x)) {
-//     //     console.log('FOUND!')
-//     // } else {
-
-//     //     for (const subset of Object.values(itemData)) {
-//     //         count++
-//     //         if (subset.hasOwnProperty(x)) {
-//     //             console.log('Target found!')
-//     //             // console.log('Parent Index:', subset)
-//     //             arr1 = Object.keys(itemData)
-//     //             console.log("arr1", arr1)
-//     //             console.log("x", x)
-//     //             console.log("subset", Object.values(subset))
-//     //             console.log(arr1.indexOf(x))
-//     //             console.log('Subset Index:', count)
-//     //         }
-//     //         // console.log('Not Found...')
-//     //     }
-//     //     // return itemData.hasOwnProperty(x)
-//     // }
-//     // console.log(itemData)
-//     console.log(itemData)
-// }
-
-// function lookupTable(x, specific) {
-//     let count = 0
-//     if (!specific) {
-//         if (dataObject.hasOwnProperty(x)) {
-//             console.log('FOUND!')
-//             console.log(dataObject[x].name)
-//         } else {
-//             for (const subset of Object.values(dataObject)) {
-//                 count++
-//                 if (subset.hasOwnProperty(x)) {
-//                     console.log('Target found!')
-//                     console.log('Array Index:', count)
-//                     console.log(dataObject[subset].name)
-//                 }
-//                 // console.log('Not Found...')
-//             }
-//             // return itemData.hasOwnProperty(x)
-//         }
-//     }
-
-// }
 function returnedData(x) {
+	console.log('==============================');
+	console.log('==============================');
 	console.log('###Function Executed returnData(' + x + ')');
-	let catIndex = 0;
-	let foundCat = false;
-	let searchCat = false;
-	let foundSpecific = null;
-	let message = null;
+	let categories = [
+		'weapon_sniper',
+		'Snipers',
+		'weapon_lmg',
+		'Light Machine Guns',
+		'weapon_pistol',
+		'Handguns',
+		'weapon_assault_rifle',
+		'Assault Rifles',
+		'weapon_shotgun',
+		'Shotguns',
+		'weapon_smg',
+		'Submachine Guns',
+		'weapon_marksman',
+		'Marksman Rifles',
+	];
+	let cat = null;
 	let arr1 = {};
 
-	// console.log("ITEMDATA from APP.js", JSON.stringify(apiApp.apiData))
-	// console.log("ITEMDATA from APP.js", itemData)
-
-	for (const subcat of Object.values(itemData)) {
-		searchCat = Object.entries(itemData)[catIndex][0];
-		let searchCat2 = Object.keys(itemData)[subcat];
-		// console.log('compare1', searchCat);
-		// console.log('compare2', searchCat2);
-		// console.log('compare3');
-		// console.log('LOOK HERE', searchCat);
-		let count = 0;
-		//If x == name of weapon/equip category...
-		if (x == searchCat) {
-			foundCat = x;
-			console.log('Matched Category Name!', foundCat);
-			console.log('Returning', dataObject[foundCat]); //Returning object containing all weapons under category
-			// console.log('Category Index', catIndex)
-			// if x/category is in dataObject
-			if (dataObject.hasOwnProperty(x)) {
-				return dataObject[foundCat]; //ENDPOINT 1
-			} else {
-				message = 'Category';
-				console.log('LOOK HERE', x, message);
-				return searchCat; //ENDPOINT 1
-			}
-		} else {
-			for (const subWeapon of Object.keys(subcat)) {
-				count++;
-				if (x == subWeapon) {
-					console.log('Matched Specific Name!', x);
-					foundCat = searchCat;
-					foundSpecific = x;
-					// console.log('Target found!')
-					// console.log("Found Within", foundCat)
-					// console.log(subcat[x].properties)
-					arr1 = subcat[x].properties;
-					// arr1 = Object.keys(subcat)
-					// console.log("arr1", arr1)
-					// console.log(arr1.indexOf(x))
-					// console.log("Found", foundSpecific)
-					// lookupTable(x, foundCat)
-					//--------------------------------------------------------
-					// return lookupTable(x, foundSpecific, arr1);
-					return console.log('>>NEXT FUNCTION>>', x, foundSpecific, arr1);
-				}
-			}
-			if (foundSpecific == false) {
-				console.log('failed');
-				return 'failed';
-			}
-			// return "Weapon cat not found"
-		}
-		catIndex++;
+	console.log(categories.indexOf(x));
+	if (categories.includes(x)) {
+		console.log('Valid Category Found');
+		console.log(categories[categories.indexOf(x) + 1]);
+		return categories[categories.indexOf(x) + 1];
+	} else {
+		console.log('Valid Category Not Found');
+		return lookupTable(x); // Pass on to 2nd function
 	}
-	// Cannot find anything
-	if (!foundCat) {
-		// console.log("not found")
-		message = 'Cannot find ' + x;
-		return message;
-	}
+	console.log('end of function reached somehow?');
 }
-//If found, lets plug data into this function to find if our plug-in data exists...
-function lookupTable(x, specific, arr) {
-	console.log('lookupTable Loaded');
+
+function lookupTable(x) {
+	console.log('==============================');
+	console.log('###Function Executed lookupTable(' + x + ')');
 	let count = 0;
 	let arr2 = {};
 	let c = {};
-
-	if (!specific) {
-		if (dataObject.hasOwnProperty(x)) {
-			// console.log('FOUND!')
-			// return dataObject[x]
-		} else {
-			for (const subset of Object.values(dataObject)) {
-				count++;
-				if (subset.hasOwnProperty(x)) {
-					// console.log('Target found!')
-					// console.log('Array Index:', count)
-					// console.log(dataObject[subset].name)
-				}
-				// console.log('Not Found...')
-			}
-			// return itemData.hasOwnProperty(x)
+	for (const category of Object.keys(dataObject)) {
+		// console.log(category);
+		if (dataObject.hasOwnProperty(category)) {
+			console.log('Found', x);
 		}
-	} else {
-		for (const subCat of Object.values(dataObject)) {
-			// console.log(subCat)
-			for (const subWeapon of Object.keys(subCat)) {
-				if (x == subWeapon) {
-					// console.log("Found", subWeapon)
-					// console.log(subCat[subWeapon])
-					arr2 = subCat[subWeapon];
-					c = {
-						...arr,
-						...arr2,
-					};
-					// console.log(c)
-					return c;
-				}
-			}
-		}
-		return 'Not Found';
 	}
 }
+// if (!specific) {
+// 	if (dataObject.hasOwnProperty(x)) {
+// 		// console.log('FOUND!')
+// 		// return dataObject[x]
+// 	} else {
+// 		for (const subset of Object.values(dataObject)) {
+// 			count++;
+// 			if (subset.hasOwnProperty(x)) {
+// 				// console.log('Target found!')
+// 				// console.log('Array Index:', count)
+// 				// console.log(dataObject[subset].name)
+// 			}
+// 			// console.log('Not Found...')
+// 		}
+// 		// return itemData.hasOwnProperty(x)
+// 	}
+// } else {
+// 	for (const subCat of Object.values(dataObject)) {
+// 		// console.log(subCat)
+// 		for (const subWeapon of Object.keys(subCat)) {
+// 			if (x == subWeapon) {
+// 				// console.log("Found", subWeapon)
+// 				// console.log(subCat[subWeapon])
+// 				arr2 = subCat[subWeapon];
+// 				c = {
+// 					...arr,
+// 					...arr2,
+// 				};
+// 				// console.log(c)
+// 				return c;
+// 			}
+// 		}
+// 	}
+// 	return 'Not Found';
+// }
+
+// for (const [key, value] of Object.entries(weaponData)) {
+// 	console.log(key);
+// 	if (x == key) {
+// 		console.log('Valid Category Found');
+// 		return x;
+// 	} else {
+// 		console.log('Valid Category Not Found');
+// 		return x;
+// 	}
+// }
+// 	searchCat = Object.entries(itemData)[catIndex][0];
+// 	let searchCat2 = Object.keys(itemData)[subcat];
+// 	// console.log('compare1', searchCat);
+// 	// console.log('compare2', searchCat2);
+// 	// console.log('compare3');
+// 	// console.log('LOOK HERE', searchCat);
+// 	let count = 0;
+// 	//If x == name of weapon/equip category...
+// 	if (x == searchCat) {
+// 		foundCat = x;
+// 		console.log('Matched Category Name!', foundCat);
+// 		console.log('Returning', dataObject[foundCat]); //Returning object containing all weapons under category
+// 		// console.log('Category Index', catIndex)
+// 		// if x/category is in dataObject
+// 		if (dataObject.hasOwnProperty(x)) {
+// 			return dataObject[foundCat]; //ENDPOINT 1
+// 		} else {
+// 			message = 'Category';
+// 			console.log('LOOK HERE', x, message);
+// 			return searchCat; //ENDPOINT 1
+// 		}
+// 	} else {
+// 		for (const subWeapon of Object.keys(subcat)) {
+// 			count++;
+// 			if (x == subWeapon) {
+// 				console.log('Matched Specific Name!', x);
+// 				foundCat = searchCat;
+// 				foundSpecific = x;
+// 				// console.log('Target found!')
+// 				// console.log("Found Within", foundCat)
+// 				// console.log(subcat[x].properties)
+// 				arr1 = subcat[x].properties;
+// 				// arr1 = Object.keys(subcat)
+// 				// console.log("arr1", arr1)
+// 				// console.log(arr1.indexOf(x))
+// 				// console.log("Found", foundSpecific)
+// 				// lookupTable(x, foundCat)
+// 				//--------------------------------------------------------
+// 				// return lookupTable(x, foundSpecific, arr1);
+// 				return console.log('>>NEXT FUNCTION>>', x, foundSpecific, arr1);
+// 			}
+// 		}
+// 		if (foundSpecific == false) {
+// 			console.log('failed');
+// 			return 'failed';
+// 		}
+// 		// return "Weapon cat not found"
+// 	}
+// 	catIndex++;
+// }
+// // Cannot find anything
+// if (!foundCat) {
+// 	// console.log("not found")
+// 	message = 'Cannot find ' + x;
+// 	return message;
+
+//If found, lets plug data into this function to find if our plug-in data exists...
+// function lookupTable(x, specific, arr) {
+// 	console.log('lookupTable Loaded');
+// 	let count = 0;
+// 	let arr2 = {};
+// 	let c = {};
+
+// 	if (!specific) {
+// 		if (dataObject.hasOwnProperty(x)) {
+// 			// console.log('FOUND!')
+// 			// return dataObject[x]
+// 		} else {
+// 			for (const subset of Object.values(dataObject)) {
+// 				count++;
+// 				if (subset.hasOwnProperty(x)) {
+// 					// console.log('Target found!')
+// 					// console.log('Array Index:', count)
+// 					// console.log(dataObject[subset].name)
+// 				}
+// 				// console.log('Not Found...')
+// 			}
+// 			// return itemData.hasOwnProperty(x)
+// 		}
+// 	} else {
+// 		for (const subCat of Object.values(dataObject)) {
+// 			// console.log(subCat)
+// 			for (const subWeapon of Object.keys(subCat)) {
+// 				if (x == subWeapon) {
+// 					// console.log("Found", subWeapon)
+// 					// console.log(subCat[subWeapon])
+// 					arr2 = subCat[subWeapon];
+// 					c = {
+// 						...arr,
+// 						...arr2,
+// 					};
+// 					// console.log(c)
+// 					return c;
+// 				}
+// 			}
+// 		}
+// 		return 'Not Found';
+// 	}
+// }
 
 const dataObject = {
 	weapon_sniper: {
@@ -1188,10 +1171,38 @@ const scorestreakData = {
 		},
 	},
 };
+
+function buildWeaponData() {
+	weaponData = {
+		weapon_sniper: {
+			...itemData.weapon_sniper,
+		},
+		weapon_lmg: {
+			...itemData.weapon_lmg,
+		},
+		weapon_pistol: {
+			...itemData.weapon_pistol,
+		},
+		weapon_assault_rifle: {
+			...itemData.weapon_assault_rifle,
+		},
+		weapon_shotgun: {
+			...itemData.weapon_shotgun,
+		},
+		weapon_smg: {
+			...itemData.weapon_smg,
+		},
+		weapon_marksman: {
+			...itemData.weapon_marksman,
+		},
+	};
+}
+buildWeaponData();
 //weapon_sniper
 //iw8_sn_sksierra
 //iw8_lm_mgolf36
-console.log('###TESTING TESTING TESTING', '-TEST-', returnedData('test'));
-console.log('###TESTING TESTING TESTING', '-weapon_sniper-', returnedData('weapon_sniper'));
-console.log('###TESTING TESTING TESTING', '-iw8_lm_mgolf36-', returnedData('iw8_lm_mgolf36'));
-console.log('###TESTING TESTING TESTING', '-iw8_sn_sksierra-', returnedData('iw8_sn_sksierra'));
+console.log('Function Output>>>', returnedData('test'));
+console.log('Function Output>>>', returnedData('weapon_sniper'));
+console.log('Function Output>>>', returnedData('iw8_lm_mgolf36'));
+console.log('Function Output>>>', returnedData('iw8_sn_sksierra'));
+console.log('Function Output>>>', returnedData('weapon_smg'));
